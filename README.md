@@ -1,2 +1,2 @@
 # chatServer
- make chat server with socket programming
+ Make chat server with socket programming
