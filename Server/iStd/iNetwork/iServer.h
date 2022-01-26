@@ -16,18 +16,24 @@
 #endif
 
 #include "iList.h"
+#include "iQueue.h"
 #include "iString.h"
 #include "iThreadPool.h"
 
-#define iSERVERUSER_BUFF_SIZE 512
-#define iUSERMANAGER_BUFF_SIZE 512
+#define ISERVER_USER_SIZE			FD_SETSIZE * 2 
+#define ISERVER_QUEUE_SIZE					   100
+#define ISERVER_RECV_BUFF_SIZE				   512
 
-#define iUSERMANGER_WORKING			1
-#define iUSERMANGER_READY_TO_DIE	2
+#define ISERVERUSER_WAIT_SIGN		0
+#define ISERVERUSER_ALIVE_SIGN		1
+#define iSERVERUSER_DEAD_SIGN		2
 
-#define iSERVER_WORKING_SIGN	0
-#define iSERVER_EXIT_SIGN		1
-#define iSERVER_READY_TO_DIE	2
+#define iUSERMANGER_WORKING			0
+#define iUSERMANGER_READY_TO_DIE	1
+
+#define iSERVER_WORKING_SIGN		0
+#define iSERVER_EXIT_SIGN			1
+#define iSERVER_READY_TO_DIE		2
 
 enum iServErrCode
 {
@@ -36,6 +42,8 @@ enum iServErrCode
 	iServErrCodeSockStatusChanging,
 	iServErrCodeAccept,
 	iServErrCodeSelect,
+	iServErrCodeSend,
+	iServErrCodeConnectionOut,
 };
 
 struct iServerUser;
@@ -58,7 +66,9 @@ public:
 	virtual void eventServExit();
 	virtual void eventError(iServErrCode code);
 
-	void sendMsgToUser(iServerUser* user, const char* msg);
+	void sendMsgToUser(iServerUser* user, const char* msg, int size);
+	void shutDownUser(iServerUser* user);
+	void shutDown();
 
 private:
 	static void* activeiUserManager(void* userMg);
@@ -75,8 +85,39 @@ public:
 	uint64 servSock;
 };
 
-struct iServerUser
+class iUserManager
 {
+public:
+	iUserManager(iServer* serv);
+	virtual ~iUserManager();
+
+public:
+	iServer* server;
+
+	uint8 sign;
+
+	FD_SET recvSet;
+	FD_SET sendSet;
+
+	char buff[ISERVER_RECV_BUFF_SIZE];
+
+	iList users;
+
+	pthread_mutex_t mutex;
+	iQueue request;
+};
+
+class iServerUser
+{
+public:
+	iServerUser(uint64 socket, sockaddr_in addr);
+	virtual ~iServerUser();
+
+public:
+	iUserManager* userMg;
+
+	uint8 sign;
+
 	uint64 socket;
 	sockaddr_in addr;
 
@@ -84,20 +125,9 @@ struct iServerUser
 	uint16 recvMsgChunkLen;
 
 	iString sendMsg;
-	uint16 sendMsgChunkLen;
 };
 
-struct iUserManager
-{
-	FD_SET recvSet;
-	FD_SET sendSet;
 
-	iServer* server;
-
-	uint8 flag;
-	char buff[iUSERMANAGER_BUFF_SIZE];
-	iList users;
-};
 
 
 

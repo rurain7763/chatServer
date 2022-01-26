@@ -1,4 +1,25 @@
 #include "iNetwork.h"
+#include "iStd.h"
+
+pthread_mutex_t selectMutex = NULL;
+
+void loadNetwork()
+{
+#ifdef _WIN32
+	loadWSA();
+#endif
+
+	pthread_mutex_init(&selectMutex, NULL);
+}
+
+void endNetwork()
+{
+#ifdef _WIN32
+	endWSA();
+#endif
+
+	pthread_mutex_destroy(&selectMutex);
+}
 
 int createSocket(const char* si, uint16 sp)
 {
@@ -49,6 +70,23 @@ void closeSocket(uint64 socket)
 #elif _WIN32
 	closesocket(socket);
 #endif
+}
+
+char* getIpByDomainName(const char* domain)
+{
+	in_addr ia;
+	hostent* info = gethostbyname(domain);
+	char* addr = info->h_addr_list[0];
+	memcpy(&ia, addr, sizeof(char) * info->h_length);
+
+	char* ip = inet_ntoa(ia);
+
+	int len = strlen(ip);
+	char* r = new char[len + 1];
+	memcpy(r, ip, sizeof(char) * len);
+	r[len] = 0;
+
+	return r;
 }
 
 bool isend(uint64 socket, const char* m)

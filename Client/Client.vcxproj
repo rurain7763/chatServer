@@ -18,44 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="iStd\iContainer\iArray.h" />
-    <ClInclude Include="iStd\iContainer\iHashTable.h" />
-    <ClInclude Include="iStd\iContainer\iList.h" />
-    <ClInclude Include="iStd\iContainer\iQueue.h" />
-    <ClInclude Include="iStd\iContainer\iStack.h" />
-    <ClInclude Include="iStd\iContainer\iString.h" />
-    <ClInclude Include="iStd\iNetwork\iConnectionManager.h" />
-    <ClInclude Include="iStd\iNetwork\iNetwork.h" />
-    <ClInclude Include="iStd\iNetwork\iServer.h" />
-    <ClInclude Include="iStd\iStd.h" />
-    <ClInclude Include="iStd\iThreadPool.h" />
-    <ClInclude Include="iStd\iType.h" />
-    <ClInclude Include="iStd\iWindows.h" />
-    <ClInclude Include="iStd\pthread\include\pthread.h" />
-    <ClInclude Include="iStd\pthread\include\sched.h" />
-    <ClInclude Include="iStd\pthread\include\semaphore.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="iStd\iContainer\iArray.cpp" />
-    <ClCompile Include="iStd\iContainer\iHashTable.cpp" />
-    <ClCompile Include="iStd\iContainer\iList.cpp" />
-    <ClCompile Include="iStd\iContainer\iQueue.cpp" />
-    <ClCompile Include="iStd\iContainer\iStack.cpp" />
-    <ClCompile Include="iStd\iContainer\iString.cpp" />
-    <ClCompile Include="iStd\iNetwork\iConnectionManager.cpp" />
-    <ClCompile Include="iStd\iNetwork\iNetwork.cpp" />
-    <ClCompile Include="iStd\iNetwork\iServer.cpp" />
-    <ClCompile Include="iStd\iStd.cpp" />
-    <ClCompile Include="iStd\iThreadPool.cpp" />
-    <ClCompile Include="iStd\iWindows.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e7a2ed1f-e565-4469-bd50-935df0bb9c98}</ProjectGuid>
-    <RootNamespace>Server</RootNamespace>
+    <ProjectGuid>{556da221-2803-46f2-9902-2ab8511918f5}</ProjectGuid>
+    <RootNamespace>Client</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -121,12 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)iStd/iContainer;$(ProjectDir)iStd/pthread/include;$(ProjectDir)iStd/iNetwork;$(ProjectDir)iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Server/iStd/iNetwork;$(SolutionDir)/Server/iStd/iContainer;$(SolutionDir)/Server/iStd/pthread/include;$(SolutionDir)/Server/iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Server/iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,14 +104,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)iStd/iContainer;$(ProjectDir)iStd/pthread/include;$(ProjectDir)iStd/iNetwork;$(ProjectDir)iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Server/iStd/iNetwork;$(SolutionDir)/Server/iStd/iContainer;$(SolutionDir)/Server/iStd/pthread/include;$(SolutionDir)/Server/iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Server/iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -153,12 +120,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)iStd/iContainer;$(ProjectDir)iStd/pthread/include;$(ProjectDir)iStd/iNetwork;$(ProjectDir)iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Server/iStd/iNetwork;$(SolutionDir)/Server/iStd/iContainer;$(SolutionDir)/Server/iStd/pthread/include;$(SolutionDir)/Server/iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Server/iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -169,16 +136,31 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)iStd/iContainer;$(ProjectDir)iStd/pthread/include;$(ProjectDir)iStd/iNetwork;$(ProjectDir)iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Server/iStd/iNetwork;$(SolutionDir)/Server/iStd/iContainer;$(SolutionDir)/Server/iStd/pthread/include;$(SolutionDir)/Server/iStd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Server/iStd/pthread/lib/x86_;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Server\iStd\iContainer\iArray.cpp" />
+    <ClCompile Include="..\Server\iStd\iContainer\iHashTable.cpp" />
+    <ClCompile Include="..\Server\iStd\iContainer\iList.cpp" />
+    <ClCompile Include="..\Server\iStd\iContainer\iQueue.cpp" />
+    <ClCompile Include="..\Server\iStd\iContainer\iStack.cpp" />
+    <ClCompile Include="..\Server\iStd\iContainer\iString.cpp" />
+    <ClCompile Include="..\Server\iStd\iNetwork\iConnectionManager.cpp" />
+    <ClCompile Include="..\Server\iStd\iNetwork\iNetwork.cpp" />
+    <ClCompile Include="..\Server\iStd\iNetwork\iServer.cpp" />
+    <ClCompile Include="..\Server\iStd\iStd.cpp" />
+    <ClCompile Include="..\Server\iStd\iThreadPool.cpp" />
+    <ClCompile Include="..\Server\iStd\iWindows.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
