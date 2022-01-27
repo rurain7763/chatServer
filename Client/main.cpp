@@ -1,6 +1,6 @@
 #include "iStd.h"
 
-#define IP "192.168.50.84"
+#define IP ""
 #define PORT 9600
 
 #ifndef IP 
@@ -12,7 +12,6 @@
 #endif
 
 bool run = true;
-uint32 count = 0;
 iConnection* echoServer;
 pthread_mutex_t mutex;
 

@@ -1,6 +1,6 @@
 #include "iStd.h"
 
-#define IP "192.168.50.84"
+#define IP ""
 #define PORT 9600
 
 #ifndef IP 
